@@ -1,0 +1,105 @@
+/* Page colors, type, and the shared box model. */
+:root {
+  color: #1c1915;
+  background: #f3efe6;
+  font-family: "Segoe UI", sans-serif;
+  line-height: 1.5;
+}
+
+* { box-sizing: border-box; }
+body { margin: 0; }
+h1, h2, p { margin: 0; }
+a { color: inherit; }
+button, input, select { font: inherit; color: inherit; }
+button { cursor: pointer; }
+img { display: block; width: 100%; object-fit: cover; }
+
+/* Header and page width. */
+.site-header, main {
+  width: min(1100px, calc(100% - 2rem));
+  margin: 0 auto;
+}
+.site-header { padding: 1rem 0; }
+.brand { font-size: 1.3rem; font-weight: 700; text-decoration: none; }
+main { padding-bottom: 3rem; }
+h1 { font-size: clamp(1.8rem, 3vw, 2.4rem); margin-bottom: 1rem; }
+
+/* Search, category, and sort sit on one row, then stack on a phone. */
+.toolbar {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+label { display: flex; flex-direction: column; gap: 0.3rem; font-size: 0.85rem; font-weight: 700; }
+input, select {
+  min-height: 2.7rem;
+  padding: 0.5rem 0.7rem;
+  border: 1px solid #e3d9cc;
+  border-radius: 10px;
+  background: #fffdf8;
+  font-weight: 500;
+}
+
+/* Product cards: 4 columns, then 2, then 1. */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.9rem;
+}
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  padding: 0.7rem;
+  text-decoration: none;
+  background: #fffdf8;
+  border: 1px solid #e3d9cc;
+  border-radius: 14px;
+}
+.card img { aspect-ratio: 4 / 3; border-radius: 8px; background: #efe7dc; }
+.card h2 { font-size: 1rem; }
+.chip, .eyebrow { color: #0f6b5c; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; }
+.muted, .status { color: #6d645c; margin: 0.4rem 0 0.8rem; }
+
+/* Product details: image beside the description. */
+.details {
+  display: grid;
+  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+  gap: 1.2rem;
+  align-items: start;
+}
+.details img { border-radius: 14px; background: #fffdf8; }
+.price { margin: 0.5rem 0; font-size: 1.3rem; font-weight: 700; }
+.back-link { display: inline-block; margin-bottom: 1rem; font-weight: 700; color: #0a4f44; }
+
+/* Empty, error, and page controls. */
+.notice, .pager { margin: 1rem 0; }
+.notice {
+  padding: 1rem;
+  text-align: center;
+  background: #fffdf8;
+  border: 1px solid #e3d9cc;
+  border-radius: 14px;
+}
+.notice p { margin-bottom: 0.7rem; }
+.notice button, .pager button {
+  min-height: 2.4rem;
+  padding: 0.35rem 0.8rem;
+  border: 1px solid #e3d9cc;
+  border-radius: 999px;
+  background: #fff;
+  font-weight: 700;
+}
+.notice button { background: #0f6b5c; color: white; border-color: #0f6b5c; }
+.pager { display: flex; justify-content: center; align-items: center; gap: 0.7rem; }
+button:disabled { opacity: 0.45; cursor: not-allowed; }
+button:focus-visible, input:focus, select:focus { outline: 3px solid rgba(15, 107, 92, 0.35); }
+
+@media (max-width: 900px) {
+  .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .details, .toolbar { grid-template-columns: 1fr; }
+}
+@media (max-width: 520px) {
+  .grid { grid-template-columns: 1fr; }
+}
